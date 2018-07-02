@@ -40,7 +40,7 @@ void CombinedMarginLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
   for(int i = 0; i < count; i++)
   {
       float arccos_x = acos(bottom_data[i]);
-      m1_arccos_x_add_m2[i] = m1 * arccos_x + m2;
+      arc_data[i] = m1 * arccos_x + m2;
   }
 
 
@@ -49,7 +49,7 @@ void CombinedMarginLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
     int gt = static_cast<int>(label_data[i]);
     if(gt < 0) continue;
 
-    top_data[i * dim + gt] = cos(m1_arccos_x_add_m2[i * dim + gt]) -m3;
+    top_data[i * dim + gt] = cos(arc_data[i * dim + gt]) -m3;
   }
 }
 
@@ -75,7 +75,7 @@ void CombinedMarginLayer<Dtype>::Backward_cpu(const vector<Blob<Dtype>*>& top,
     {
       int gt = static_cast<int>(label_data[i]);
       if(gt < 0) continue;
-      Dtype diff_gt = m1 * pow(1 - pow(bottom_data[i * dim + gt], 2), 0.5) * sin(m1_arccos_x_add_m2[i * dim + gt]);
+      Dtype diff_gt = m1 * pow(1 - pow(bottom_data[i * dim + gt], 2), 0.5) * sin(m1_x_m2[i * dim + gt]);
       bottom_diff[i * dim + gt] = diff_gt;
     }
   }
