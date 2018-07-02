@@ -1,5 +1,5 @@
-#ifndef CAFFE_COSIN_ADD_M_LAYER_HPP_
-#define CAFFE_COSIN_ADD_M_LAYER_HPP_
+#ifndef CAFFE_COMBINED_MARGIN_LAYER_HPP_
+#define CAFFE_COMBINED_MARGIN_LAYER_HPP_
 
 #include <vector>
 
@@ -39,5 +39,5 @@ class CombinedMarginLayer : public Layer<Dtype> {
 
 }  // namespace caffe
 
-#endif  // CAFFE_COSIN_ADD_M_LAYER_HPP_
+#endif  // CAFFE_COMBINED_MARGIN_LAYER_HPP_
 
