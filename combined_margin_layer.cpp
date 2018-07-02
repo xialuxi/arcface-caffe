@@ -82,7 +82,7 @@ void CombinedMarginLayer<Dtype>::Backward_cpu(const vector<Blob<Dtype>*>& top,
 }
 
 INSTANTIATE_CLASS(CombinedMarginLayer);
-REGISTER_LAYER_CLASS(CombinedMarginLayer);
+REGISTER_LAYER_CLASS(CombinedMargin);
 
 }  // namespace caffe
 
