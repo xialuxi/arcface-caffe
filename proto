@@ -1,0 +1,13 @@
+message LayerParameter
+{
+ //*add this*
+  optional CombinedMarginParameter combined_margin_param = 156;
+}
+
+
+message CombinedMarginParameter {
+  optional float m1 = 1 [default = 4];
+  optional float m2 = 2 [default = 0.5];
+  optional float m3 = 3 [default = 0.35];
+  optional bool transform_test = 4 [default = false];
+}
