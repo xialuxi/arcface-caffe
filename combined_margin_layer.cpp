@@ -29,7 +29,7 @@ void CombinedMarginLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
   const Dtype* bottom_data = bottom[0]->cpu_data();
   const Dtype* label_data = bottom[1]->cpu_data();
   Dtype* top_data = top[0]->mutable_cpu_data();
-  Dtype* arc_data = arccos_x.mutable_cpu_data();
+  Dtype* arc_data =m1_arccos_x_add_m2.mutable_cpu_data();
 
   int num = bottom[0]->num();
   int count = bottom[0]->count();
