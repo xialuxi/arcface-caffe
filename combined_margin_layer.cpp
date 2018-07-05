@@ -6,8 +6,8 @@
 namespace caffe {
 
   template <typename Dtype>
-  void CombinedMarginLayer<Dtype>::LayerSetUp(const vector<Blob<Dtype>*>& bottom,
-                                                    const vector<Blob<Dtype>*>& top) {
+  void CombinedMarginLayer<Dtype>::LayerSetUp(const vector<Blob<Dtype>*>& bottom,const vector<Blob<Dtype>*>& top) 
+{
     const CombinedMarginParameter& param = this->layer_param_.combined_margin_param();
     m1 = param.m1();
     m2 = param.m2();
@@ -19,7 +19,6 @@ namespace caffe {
   void CombinedMarginLayer<Dtype>::Reshape(const vector<Blob<Dtype>*>& bottom,
                                                     const vector<Blob<Dtype>*>& top) {
     top[0]->ReshapeLike(*bottom[0]);
-    //arccos_x.ReshapeLike(*bottom[0]);
     m1_arccos_x_add_m2.ReshapeLike(*bottom[0]);
   }
 
@@ -29,7 +28,7 @@ void CombinedMarginLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
   const Dtype* bottom_data = bottom[0]->cpu_data();
   const Dtype* label_data = bottom[1]->cpu_data();
   Dtype* top_data = top[0]->mutable_cpu_data();
-  Dtype* arc_data =m1_arccos_x_add_m2.mutable_cpu_data();
+  Dtype* m1_x_m2 = m1_arccos_x_add_m2.mutable_cpu_data();
 
   int num = bottom[0]->num();
   int count = bottom[0]->count();
@@ -40,7 +39,7 @@ void CombinedMarginLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
   for(int i = 0; i < count; i++)
   {
       float arccos_x = acos(bottom_data[i]);
-      arc_data[i] = m1 * arccos_x + m2;
+      m1_x_m2[i] = m1 * arccos_x + m2;
   }
 
 
@@ -49,7 +48,7 @@ void CombinedMarginLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
     int gt = static_cast<int>(label_data[i]);
     if(gt < 0) continue;
 
-    top_data[i * dim + gt] = cos(arc_data[i * dim + gt]) -m3;
+    top_data[i * dim + gt] = cos(m1_x_m2[i * dim + gt]) -m3;
   }
 }
 
@@ -85,4 +84,3 @@ INSTANTIATE_CLASS(CombinedMarginLayer);
 REGISTER_LAYER_CLASS(CombinedMargin);
 
 }  // namespace caffe
-
