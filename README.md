@@ -8,4 +8,6 @@
 
 4、增加Combined Margin Loss 参考insightface的实现
 
+5、增加mtcnn人脸检测python代码，根据c++代码改写，效果没有任何损失，模型与原始代码请参考：https://github.com/blankWorld/MTCNN-Accelerate-Onet
+
 
