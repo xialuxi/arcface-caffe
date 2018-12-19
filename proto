@@ -1,9 +1,17 @@
 message LayerParameter
 {
- //*add this*
+  /*****************************************
+  *add this*
+  ******************************************/
+  optional CosinAddmParameter cosin_add_m_param = 179;
+  
   optional CombinedMarginParameter combined_margin_param = 156;
 }
 
+message CosinAddmParameter {
+  optional float m = 1 [default = 0.5];
+  optional bool transform_test = 2 [default = false];
+}
 
 message CombinedMarginParameter {
   optional float m1 = 1 [default = 4];
