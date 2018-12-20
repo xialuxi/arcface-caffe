@@ -5,10 +5,15 @@
 2、caffe工程，以及其它层的实现请参考：https://github.com/xialuxi/AMSoftmax
 
 3、编译过程：
+
 (1)下载https://github.com/xialuxi/AMSoftmax工程，修改好make.config的环境配置
+
 (2)将cosin_add_m_layer.hpp拷贝到目录： ./caffe/include/caffe/layers/下
+
 (3)将cosin_add_m_layer.cpp 、 cosin_add_m_layer.cu 拷贝到目录： ./caffe/src/caffe/layers/下
+
 (4)根据proto文件，对应修改./caffe/src/caffe/proto/caffe.proto文件
+
 (5)make -j
 
 4、原理请参考：https://github.com/xialuxi/insightface
