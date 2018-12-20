@@ -16,7 +16,7 @@
     
     (5)make -j
 
-4、原理请参考：https://github.com/xialuxi/insightface
+4、原理请参考：https://github.com/deepinsight/insightface
 
 5、增加Combined Margin Loss 参考insightface的实现
 
