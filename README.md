@@ -26,4 +26,6 @@
 
 8、增加 insightface的gpu实现代码
 
+9、增加mxnet中带SE结构的网络模型转化为caffemodel的方法
+
 
