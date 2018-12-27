@@ -1,1 +1,8 @@
 
+1、普通网络转换参考代码：  https://github.com/GarrickLin/MXNet2Caffe
+
+
+2、SE网络结构在人脸识别中表现比较优秀，提供带SE的网络模型转化代码，以及示例。
+
+
+3、具体过程：
