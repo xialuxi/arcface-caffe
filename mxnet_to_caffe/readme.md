@@ -20,7 +20,7 @@
     (2)、 修改转化不正确的地方，例如：
          对生成的prototxt文件搜索bottom: “_mulscalar0”，将_mulscalar0改为上一层的”data”，也就是将bottom: “_mulscalar0”改为bottom: “data”
          
-    （3）、 将elemwise_add操作，使用caffe的 Axpy层代替，具体怎么修改，请参考face.prototxt
+    （3）、 将elemwise_add操作，使用caffe的 Axpy层代替，具体怎么修改，请参考face.prototxt（SErenet50）
     
     （4）、 利用 http://ethereon.github.io/netscope/#/editor 检查网络是否连接正确
     
