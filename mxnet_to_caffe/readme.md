@@ -6,6 +6,7 @@
 
 
 3、caffe新添加层：
+
     （1）、 将axpy_layer.hpp拷贝到目录： ./caffe/include/caffe/layers/下
 
     (2)、 将axpy_layer.cpp 、 axpy_layer.cu 拷贝到目录： ./caffe/src/caffe/layers/下
@@ -13,6 +14,7 @@
     (3)、 make -j
 
 4、具体过程：
+
     （1）、 json2prototxt.py代码，将mxnet的模型描述文件model-symbol.json，转化为caffe的网络描述文件face.prototxt.
     
     (2)、 修改转化不正确的地方，例如：
