@@ -3,7 +3,7 @@
 namespace caffe {
 
 template <typename Dtype>
-__global__ void WingLossForward(const int n, const Dtype* abs_d, const Dtype* log_d
+__global__ void WingLossForward(const int n, const Dtype* abs_d, const Dtype* log_d, 
     const float w, const float epsilon, const float c, Dtype* out) {
   *out = 0.f;
   CUDA_KERNEL_LOOP(index, n) {
@@ -67,8 +67,7 @@ __global__ void WingLossBackward(const int n, const Dtype* in, Dtype* out,
 template <typename Dtype>
 void WingLossLayer<Dtype>::Backward_gpu(const vector<Blob<Dtype>*>& top,
     const vector<bool>& propagate_down, const vector<Blob<Dtype>*>& bottom) {
-  int count = diff_.count();
-
+    
     const Dtype* sub_x_data = diff_.gpu_data();
     const Dtype* abs_x_data = abs_x.gpu_data();
     Dtype* bottom_diff = bottom[0]->mutable_gpu_diff();
