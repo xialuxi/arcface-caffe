@@ -11,3 +11,13 @@
 
 
 5、提供的预训练模型，满足大多数情况（大角度下，姿态比关键点准）。
+
+
+6、caffe.proto文件中添加：
+
+   optional WingLossParameter wing_loss_param = 158;
+
+   message WingLossParameter {
+  optional float w = 1 [default = 10];
+  optional float epsilon = 2 [default = 2];
+}
