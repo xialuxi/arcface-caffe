@@ -80,7 +80,7 @@ void WingLossLayer<Dtype>::Backward_gpu(const vector<Blob<Dtype>*>& top,
   CUDA_POST_KERNEL_CHECK;
 
   if (propagate_down[0]) {
-    Dtype loss_weight = top[0]->cpu_diff()[0];
+    Dtype loss_weight = top[0]->gpu_diff()[0];
     caffe_scal(count, loss_weight / bottom[0]->num(), bottom_diff);
     }
 }
