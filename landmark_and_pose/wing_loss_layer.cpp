@@ -91,25 +91,17 @@ void WingLossLayer<Dtype>::Backward_cpu(const vector<Blob<Dtype>*>& top,
 
     if (propagate_down[0])
     {
-        for(int i = 0; i < count; i++)
+         for(int i = 0; i < count; i++)
         {
+            Dtype sign = (Dtype(0) < sub_x_data[i]) - (sub_x_data[i] < Dtype(0));
+
             if(w > abs_x_data[i])
             {
-                if(sub_x_data[i] > 0) {
-                    bottom_diff[i] = w / (sub_x_data[i] + epsilon); 
-                  }
-                else{
-                    bottom_diff[i] = w / (sub_x_data[i] - epsilon);                
-                  }
+                bottom_diff[i] = sign * w / (abs_x_data[i] + epsilon);
             }
             else
             {
-                if(sub_x_data[i] > 0) {
-                    bottom_diff[i] = 1; 
-                  }
-                else{
-                    bottom_diff[i] = -1;                
-                  }
+                bottom_diff[i] = sign; 
             }
         }
     }
