@@ -224,9 +224,11 @@ def GetResult_net24(rnet, res_boxes, image):
         tempimg = np.zeros((batchsize, 24, 24, 3))
         for j in range(batchsize):
             box = res_boxes[i * batchsize + j]['faceBox']
-            roi = copy.deepcopy(image[int(box[1]): int(box[3]), int(box[0]):int(box[2])])
-            scale_img = cv2.resize(roi, (24, 24))
-            tempimg[j,:,:,:] = scale_img
+            box = np.array(box, dtype=np.int32)
+            if box[2] > box[0] and box[3] > box[1]:
+                roi = copy.deepcopy(image[box[1]: box[3], box[0]:box[2]])
+                scale_img = cv2.resize(roi, (24, 24))
+                tempimg[i, :, :, :] = scale_img
 
         tempimg = tempimg.transpose(0, 3, 1, 2)
         rnet.blobs['data'].data[...] = tempimg
@@ -252,9 +254,11 @@ def GetResult_net24(rnet, res_boxes, image):
         tempimg = np.zeros((resnum, 24, 24, 3))
         for i in range(resnum):
             box = res_boxes[num * batchsize + i]['faceBox']
-            roi = copy.deepcopy(image[int(box[1]): int(box[3]), int(box[0]):int(box[2])])
-            scale_img = cv2.resize(roi, (24, 24))
-            tempimg[i, :, :, :] = scale_img
+            box = np.array(box, dtype=np.int32)
+            if box[2] > box[0] and box[3] > box[1]:
+                roi = copy.deepcopy(image[box[1]: box[3], box[0]:box[2]])
+                scale_img = cv2.resize(roi, (24, 24))
+                tempimg[i, :, :, :] = scale_img
 
         tempimg = tempimg.transpose(0, 3, 1, 2)
         rnet.blobs['data'].data[...] = tempimg
@@ -294,9 +298,11 @@ def GetResult_net48(onet, res_boxes, image):
         tempimg = np.zeros((batchsize, 48, 48, 3))
         for j in range(batchsize):
             box = res_boxes[i * batchsize + j]['faceBox']
-            roi = copy.deepcopy(image[int(box[1]): int(box[3]), int(box[0]):int(box[2])])
-            scale_img = cv2.resize(roi, (48, 48))
-            tempimg[j,:,:,:] = scale_img
+            box = np.array(box, dtype=np.int32)
+            if box[2] > box[0] and box[3] > box[1]:
+                roi = copy.deepcopy(image[box[1]: box[3], box[0]:box[2]])
+                scale_img = cv2.resize(roi, (48, 48))
+                tempimg[i, :, :, :] = scale_img
 
         tempimg = tempimg.transpose(0, 3, 1, 2)
         onet.blobs['data'].data[...] = tempimg
@@ -333,9 +339,11 @@ def GetResult_net48(onet, res_boxes, image):
         tempimg = np.zeros((resnum, 48, 48, 3))
         for i in range(resnum):
             box = res_boxes[num * batchsize + i]['faceBox']
-            roi = copy.deepcopy(image[int(box[1]): int(box[3]), int(box[0]):int(box[2])].copy())
-            scale_img = cv2.resize(roi, (48, 48))
-            tempimg[i, :, :, :] = scale_img
+            box = np.array(box, dtype=np.int32)
+            if box[2] > box[0] and box[3] > box[1]:
+                roi = copy.deepcopy(image[box[1]: box[3], box[0]:box[2]])
+                scale_img = cv2.resize(roi, (48, 48))
+                tempimg[i, :, :, :] = scale_img
 
         tempimg = tempimg.transpose(0, 3, 1, 2)
         onet.blobs['data'].data[...] = tempimg
