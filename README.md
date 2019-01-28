@@ -32,4 +32,4 @@
     论文：https://arxiv.org/abs/1711.06753v4
     
     
-11、增加基于梯度均衡的损失函数，传送门：https://github.com/xialuxi/GHMLoss-caffe
+11、增加基于梯度均衡的损失函数，可以替换softmax，传送门：https://github.com/xialuxi/GHMLoss-caffe
