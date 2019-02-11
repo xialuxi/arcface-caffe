@@ -75,7 +75,7 @@ void CombinedMarginLayer<Dtype>::Backward_cpu(const vector<Blob<Dtype>*>& top,
       int gt = static_cast<int>(label_data[i]);
       if(gt < 0) continue;
       Dtype diff_gt = m1 * pow(1 - pow(bottom_data[i * dim + gt], 2), -0.5) * sin(m1_x_m2[i * dim + gt]);
-      bottom_diff[i * dim + gt] = diff_gt;
+      bottom_diff[i * dim + gt] *= diff_gt;
     }
   }
 }
