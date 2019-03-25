@@ -34,7 +34,7 @@ namespace caffe {
       if(flag[index * dim + gt] == 0.0f) {
             Dtype cos_theta = cos_data[index * dim + gt];
             Dtype sin_theta = sqrt(1 - pow(cos_theta,2));
-            bottom_diff[index * dim + gt] = cos(bais) + sin(bais) * cos_theta / sin_theta;
+            bottom_diff[index * dim + gt] = bottom_diff[index * dim + gt] *(cos(bais) + sin(bais) * cos_theta / sin_theta);
         }
     }
   }
