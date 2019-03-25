@@ -33,3 +33,6 @@
     
     
 11、增加基于梯度均衡的损失函数，可以替换softmax，传送门：https://github.com/xialuxi/GHMLoss-caffe
+
+12、更正cosin_add_m_layer.cu反向传播的计算，谢谢 @zhaokai5 的指正。
+
