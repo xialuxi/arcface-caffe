@@ -1,3 +1,16 @@
+import cv2
+import numpy as np
+import caffe
+
+
+def get_landmark_net():
+    net_file = './landmark.prototxt'
+    caffe_model = './landmark.caffemodel'
+    caffe.set_mode_gpu()
+    net = caffe.Net(net_file, caffe_model, caffe.TEST)
+    return net
+
+
 def get_pose_landmarks(net , img):
     halfheight = img.shape[0] * 0.5
     halfwidth = img.shape[1] * 0.5
@@ -22,3 +35,13 @@ def get_pose_landmarks(net , img):
     landmarks = np.array(landmarks, dtype=np.int32)
 
     return pose, landmarks
+
+
+if __name__ == '__main__':
+    img = cv2.imread('./test.png')
+    pose, facelandmarks = get_pose_landmarks(landmark_net, img)
+    for point in facelandmarks:
+        cv2.circle(img, (point[0], point[1]), 0, (0, 0, 255), 2)
+    print 'pose: ', pose
+    cv2.imshow('', img)
+    cv2.waitKey(0)
