@@ -68,7 +68,7 @@ void CosinAddmLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
       if(j == gt) continue;
       if ( top_data[i * dim + j] > top_data[i * dim + gt] ) {
         top_data[i * dim + j] = top_data[i * dim + j] * t_ + t_ - 1;
-        tpflag[i * dim + gt] = 2.0f;
+        tpflag[i * dim + j] = 2.0f;
       }
     }
 
@@ -114,7 +114,7 @@ void CosinAddmLayer<Dtype>::Backward_cpu(const vector<Blob<Dtype>*>& top,
       for (j = 0; j < dim; j++)
       {
         if(j == gt) continue;
-        if ( tpflag[i * dim + gt] == 2.0f) {
+        if ( tpflag[i * dim + j] == 2.0f) {
           bottom_diff[i * dim + j] = bottom_diff[i * dim + j] * t_;
         }
       }
