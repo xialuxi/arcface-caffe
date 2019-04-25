@@ -38,4 +38,6 @@
 
 13、 更新了新的关键点检测和人脸姿态估计模型, 模型大小不到1M.
 
+14、 增加SV-X-Softmax的实现.参考论文:  《Support Vector Guided Softmax Loss for Face Recognition》
+
 
