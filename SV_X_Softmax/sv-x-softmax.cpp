@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <vector>
 #include <math.h>
-#include "caffe/layers/cosin_add_m_layer.hpp"
+#include "caffe/layers/sv-x-softmax.hpp"
 
 namespace caffe {
 
