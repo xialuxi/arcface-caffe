@@ -14,8 +14,6 @@ namespace caffe {
     sin_m = sin(m_);
     cos_m = cos(m_);
     threshold = cos(M_PI - m_);
-    count_num = 0;
-    count_num_back = 0;
     transform_test_ = param.transform_test() & (this->phase_ == TRAIN);
   }
 
@@ -75,7 +73,6 @@ void CosinAddmLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
     }
 
   }
-  count_num ++;
 }
 
 template <typename Dtype>
@@ -110,19 +107,20 @@ void CosinAddmLayer<Dtype>::Backward_cpu(const vector<Blob<Dtype>*>& top,
       else
         coffe = cos_m + sin_m * cos_t[i * dim + gt] / sin_theta;
 
-      if(tpflag[i * dim + gt] > 0.0f)
+      if(tpflag[i * dim + gt] == 1.0f)
         coffe = 1.0f;
       bottom_diff[i * dim + gt] = coffe * top_diff[i * dim + gt];
-
-//      if(count_num_back % 10 == 0)
-//      {
-//          LOG(INFO) << "top_diff: " << top_diff[i * dim + gt];
-//          LOG(INFO) << "bottom_diff: " << bottom_diff[i * dim + gt];
-//          LOG(INFO) << "cos_theta[ "<<i * dim + gt <<"]: "<< cos_t[i * dim + gt]<<  "    coffe: " << coffe;
-//      }
+      
+      for (j = 0; j < dim; j++)
+      {
+        if(j == gt) continue;
+        if ( tpflag[i * dim + gt] == 2.0f) {
+          bottom_diff[i * dim + j] = bottom_diff[i * dim + j] * t_;
+        }
+      }
+    
     }
   }
-  count_num_back++;
 }
 
 INSTANTIATE_CLASS(CosinAddmLayer);
