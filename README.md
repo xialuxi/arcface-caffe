@@ -31,9 +31,6 @@
 10、增加人脸关键点检测损失函数wing_loss代码， 以及人脸关键点和姿态估计的网络和预训练模型。
     论文：https://arxiv.org/abs/1711.06753v4
     
-![Image text](https://github.com/xialuxi/arcface-caffe/blob/master/AdaCos/Selection_167.png)
-    
-    
 11、增加基于梯度均衡的损失函数，可以替换softmax，传送门：https://github.com/xialuxi/GHMLoss-caffe
 
 12、更正cosin_add_m_layer.cu反向传播的计算，谢谢 @zhaokai5 的指正。
@@ -45,3 +42,6 @@
 15、 增加AdaCos的实现， 参考论文《AdaCos: Adaptively Scaling Cosine Logits for Effectively Learning Deep Face Representations》
 
 
+
+
+![Image text](https://github.com/xialuxi/arcface-caffe/blob/master/AdaCos/Selection_167.png)
