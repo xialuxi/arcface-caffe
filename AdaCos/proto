@@ -1,0 +1,14 @@
+message LayerParameter
+{
+  /*****************************************
+  *add this*
+  ******************************************/
+  optional AdaCosAddmScaleParameter adacos_add_m_scale_param = 211;
+}
+
+message AdaCosAddmScaleParameter {
+  optional float m = 1 [default = 0.5];
+  optional float num_classes = 2 [default = 8750];
+  optional bool transform_test = 3 [default = false];
+}
+
