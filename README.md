@@ -40,4 +40,6 @@
 
 14、 增加SV-X-Softmax的实现.参考论文:  《Support Vector Guided Softmax Loss for Face Recognition》
 
+15、 增加AdaCos的实现， 参考论文《AdaCos: Adaptively Scaling Cosine Logits for Effectively Learning Deep Face Representations》
+
 
