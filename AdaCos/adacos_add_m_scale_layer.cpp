@@ -14,13 +14,13 @@ namespace caffe {
     sin_m = sin(m_);
     cos_m = cos(m_);
     threshold = cos(M_PI - m_);
-    s_d = sqrt(2, 0.5) * log(num_classes - 1);
+    s_d = sqrt(2) * log(num_classes - 1);
     cos_theta_med = cos(M_PI / 4);
     transform_test_ = param.transform_test() & (this->phase_ == TRAIN);
   }
 
   template <typename Dtype>
-  void CosinAddmLayer<Dtype>::Reshape(const vector<Blob<Dtype>*>& bottom,
+  void AdaCosAddmScaleLayer<Dtype>::Reshape(const vector<Blob<Dtype>*>& bottom,
                                                     const vector<Blob<Dtype>*>& top) {
     top[0]->ReshapeLike(*bottom[0]);
     top_flag.ReshapeLike(*bottom[0]);
@@ -87,7 +87,7 @@ void AdaCosAddmScaleLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom
       sum_theta += arccos_x;
   }
   sum_theta = sum_theta / count;
-  sum_theta = min(sum_theta, M_PI / 4);
+  sum_theta = std::min(double(sum_theta), M_PI / 4);
   cos_theta_med = cos(sum_theta);
 
   //compute s_d
