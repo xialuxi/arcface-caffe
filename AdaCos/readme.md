@@ -1,1 +1,1 @@
-论文《AdaCos: Adaptively Scaling Cosine Logits for Effectively Learning Deep Face Representations》
+1、 论文《AdaCos: Adaptively Scaling Cosine Logits for Effectively Learning Deep Face Representations》
