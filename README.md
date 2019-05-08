@@ -41,3 +41,6 @@
 
 15、 增加AdaCos的实现， 参考论文《AdaCos: Adaptively Scaling Cosine Logits for Effectively Learning Deep Face Representations》
 
+16， 新的人脸检测算法（包含关键点检测）：RetinaFace
+     链接：https://github.com/xialuxi/insightface/tree/master/RetinaFace
+
