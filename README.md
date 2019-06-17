@@ -46,6 +46,7 @@
 
 
 17, 基于centernet的人脸检测算法以及关键点检测挺不错的，实现也很简单， 看下效果图(resnet18)：
+只需要添加关键点回归的分支即可，参考：https://github.com/xingyizhou/CenterNet
 
 ![Image text](https://github.com/xialuxi/arcface-caffe/blob/master/face_detection/0.jpg)!
 
