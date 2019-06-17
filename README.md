@@ -44,3 +44,10 @@
 16， 新的人脸检测算法（包含关键点检测）：RetinaFace
      链接：https://github.com/xialuxi/insightface/tree/master/RetinaFace
 
+
+17, 基于centernet的人脸检测算法以及关键点检测挺不错的，实现也很简单， 看下效果图：
+
+
+    ![Image text](https://github.com/xialuxi/arcface-caffe/blob/master/face_detection/0.jpg)![Image text]
+
+
