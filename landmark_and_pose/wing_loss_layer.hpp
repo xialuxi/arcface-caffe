@@ -46,6 +46,7 @@ class WingLossLayer : public LossLayer<Dtype> {
   Blob<Dtype> diff_;
   Blob<Dtype> abs_x;
   Blob<Dtype> log_abs;
+  Blob<Dtype> one_dot;
 };
 
 }  // namespace caffe
