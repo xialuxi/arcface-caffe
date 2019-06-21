@@ -4,14 +4,13 @@ namespace caffe {
 
 template <typename Dtype>
 __global__ void WingLossForward(const int n, const Dtype* abs_d, const Dtype* log_d, 
-    const float w, const float epsilon, const float c, Dtype* out) {
-  *out = 0.f;
+    const float w, const float epsilon, const float c) {
   CUDA_KERNEL_LOOP(index, n) {
     Dtype abs_val = abs_d[index];
     if (abs_val < w) {
-      *out += w * log_d[index];
+      log_d[index] = w * log_d[index];
     } else {
-      *out += abs_val - c;
+      log_d[index] = abs_val - c;
     }
   }
 }
@@ -43,9 +42,10 @@ void WingLossLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>& bottom,
     Dtype loss = 0.f;
     WingLossForward<Dtype><<<CAFFE_GET_BLOCKS(count), CAFFE_CUDA_NUM_THREADS>>>(
       count, abs_x.mutable_gpu_data(), log_abs.mutable_gpu_data(),
-      w, epsilon, _c, &loss);
+      w, epsilon, _c);
     CUDA_POST_KERNEL_CHECK;
-
+    
+    caffe_gpu_dot(count, log_abs.gpu_data(), one_dot.gpu_data(), &loss);
     top[0]->mutable_cpu_data()[0] = loss / bottom[0]->num();
 }
 
