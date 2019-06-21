@@ -24,6 +24,8 @@ void WingLossLayer<Dtype>::LayerSetUp(const vector<Blob<Dtype>*>& bottom, const 
    // {
    //     ignore_label_ = this->layer_param_.loss_param().ignore_label();
    // }
+    log_abs.ReshapeLike(*bottom[0]);
+    caffe_set(bottom[0]->count(), Dtype(1.0), one_dot_data);
 }
 
 template <typename Dtype>
