@@ -51,3 +51,23 @@
 ![Image text](https://github.com/xialuxi/arcface-caffe/blob/master/face_detection/0.jpg)!
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+18 、　本人最近在做k8s的kubeflow的分布式部署和训练平台，暂停有关人脸的更新，带来不便，敬请谅解！
